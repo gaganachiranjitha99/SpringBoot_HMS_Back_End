@@ -27,7 +27,7 @@ public class AuthService {
         if ("ADMIN".equals(request.getRole())) {
             var users = Users.builder()
                     .fname(request.getFname())
-                    .index(request.getIndex())
+                    .user_index(request.getUser_index())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.ADMIN)
                     .build();
@@ -40,7 +40,7 @@ public class AuthService {
             var users = Users.builder()
                     .fname(request.getFname())
                     .lname(request.getLname())
-                    .index(request.getIndex())
+                    .user_index(request.getUser_index())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.STUDENT)
                     .build();
@@ -57,12 +57,12 @@ public class AuthService {
         public AccessResponse authenticate(AccessRequest request){
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getIndex(),
+                            request.getUser_index(),
                             request.getPassword()
                     )
             );
 
-            var users = userRepo.findByIndex(request.getIndex())
+            var users = userRepo.findByIndex(request.getUser_index())
                     .orElseThrow();
             var jwtToken = jwtService.generateToken(users);
             return AccessResponse.builder()
@@ -72,9 +72,9 @@ public class AuthService {
         }
 
 
-        public Users getUserByIdex(String index){
-            return userRepo.findByIndex(index)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found with Index: " + index));
+        public Users getUserByIndex(String user_index){
+            return userRepo.findByIndex(user_index)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with Index: " + user_index));
         }
 
 //    public Users updateUserProfile(Users users) {
@@ -87,7 +87,7 @@ public class AuthService {
 //        user1.setRole(users.getRole());
 //        return userRepo.save(user1);
 //    }
-        public Users getUserById (Integer id){
+        public Users getUserById (Long id){
             return userRepo.findById(id).orElse(null);
         }
 

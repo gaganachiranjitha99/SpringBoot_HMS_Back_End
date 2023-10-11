@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class RegisterRequests {
-    private int id;
+    private Long id;
     private String fname;
     private String lname;
-    private String index;
+    private String user_index;
     private String password;
     private String role;
 }

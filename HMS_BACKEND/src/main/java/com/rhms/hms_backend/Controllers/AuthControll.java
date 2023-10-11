@@ -3,6 +3,7 @@ package com.rhms.hms_backend.Controllers;
 import com.rhms.hms_backend.Configurations.AccessRequest;
 import com.rhms.hms_backend.Configurations.AccessResponse;
 import com.rhms.hms_backend.Configurations.RegisterRequests;
+import com.rhms.hms_backend.Dto.nvBarDetails;
 import com.rhms.hms_backend.Models.Users;
 import com.rhms.hms_backend.Services.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -34,17 +35,18 @@ public class AuthControll {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
-//    @GetMapping("/CurrentUser")
-//    public navBarLogin getCurrentUser(){  //Getting the CurrentUser username Using Authentication Interface that comes with Spring Security
-//        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
-//        String firstname=authentication.getName();
-//        return new navBarLogin(firstname);
-//    }
+    @GetMapping("/CurrentUser")
+    public nvBarDetails getCurrentUser(){  //Getting the CurrentUser username Using Authentication Interface that comes with Spring Security
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String fname=authentication.getName();
+        return new nvBarDetails(fname);
+    }
+
     @GetMapping("/UserProfile")
     public Users getCurrentUserProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String index = authentication.getName();
-        return authService.getUserByIdex(index);
+        String user_index = authentication.getName();
+        return authService.getUserByIndex(user_index);
     }
 
 //    @PutMapping("/UpdateProfile")

@@ -2,6 +2,7 @@ package com.rhms.hms_backend.Configurations;
 
 import com.rhms.hms_backend.Repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,11 +24,12 @@ import java.util.concurrent.Executors;
 @RequiredArgsConstructor
 public class Configs {
 
+    @Autowired
     private final UserRepo userRepo;
 
     @Bean
     public UserDetailsService userDetailsService () {
-        return index -> (UserDetails) userRepo.findByIndex(index)
+        return user_index -> userRepo.findByIndex(user_index)
                 .orElseThrow(() -> new UsernameNotFoundException("Index Not Found!"));
     }
 
@@ -65,7 +67,7 @@ public class Configs {
     }
     @Bean
     public ExecutorService executorService() {
-        return Executors.newFixedThreadPool(10); // Adjust the pool size as per your requirements
+        return Executors.newFixedThreadPool(10); // Adjust the pool size
     }
 
 }

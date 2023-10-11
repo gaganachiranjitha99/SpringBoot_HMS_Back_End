@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 
 public class AccessRequest {
 
-    private String index;
+    private String user_index;
     String password;
 }

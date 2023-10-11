@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +20,12 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class JWTFilter extends OncePerRequestFilter {
+public class JWTAuthFilter extends OncePerRequestFilter {
 
+    @Autowired
     private final JwtService jwtService;
+
+    @Autowired
     private final UserDetailsService userDetailsService;
 
     @Override
@@ -37,9 +41,9 @@ public class JWTFilter extends OncePerRequestFilter {
             return;
         }
         jwt=authHeader.substring(7);//Extracting JWT Token
-        userIndex=jwtService.extractUsername(jwt);//Extracting User Email Using JwtService class's extractUsername method
-        if(userIndex !=null && SecurityContextHolder.getContext().getAuthentication()==null){ //Checking whether the userEmail is null and the User already Authenticated
-            UserDetails userDetails=this.userDetailsService.loadUserByUsername(userIndex); //When not authenticated getting userEmail from userDetails
+        userIndex=jwtService.extractUsername(jwt);//Extracting UserIndex Using JwtService class's extractUsername method
+        if(userIndex !=null && SecurityContextHolder.getContext().getAuthentication()==null){ //Checking whether the userIndex is null and the User already Authenticated
+            UserDetails userDetails=this.userDetailsService.loadUserByUsername(userIndex);
             if(jwtService.isTokenValid(jwt,userDetails)){ //Checking whether the User and Token is Valid.
                 UsernamePasswordAuthenticationToken authToken=new UsernamePasswordAuthenticationToken( //Creating a object of UsernamePasswordAuthenticationToken and pass below values
                         userDetails,
