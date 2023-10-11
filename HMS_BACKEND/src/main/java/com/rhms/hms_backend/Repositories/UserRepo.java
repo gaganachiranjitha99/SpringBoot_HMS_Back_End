@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<Users,Long> {
-    @Query("SELECT u FROM Users u WHERE u.user_index = :userIndex")
+    @Query("SELECT u FROM Users u WHERE u.user_index = :user_index")
     Optional<Users> findByIndex(String user_index);
 
 
