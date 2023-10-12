@@ -40,6 +40,8 @@ public class SecurityConfig  {
                 .requestMatchers("/api/user/dean").hasRole(Role.DEAN.name())
                 .requestMatchers("/api/user/subwarden").hasRole(Role.SUBWARDEN.name())
 
+                .requestMatchers("api/admin/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

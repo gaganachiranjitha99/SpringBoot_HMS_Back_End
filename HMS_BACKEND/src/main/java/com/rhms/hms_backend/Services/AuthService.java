@@ -27,6 +27,7 @@ public class AuthService {
         if ("ADMIN".equals(request.getRole())) {
             var users = Users.builder()
                     .fname(request.getFname())
+                    .lname(request.getLname())
                     .user_index(request.getUser_index())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.ADMIN)
