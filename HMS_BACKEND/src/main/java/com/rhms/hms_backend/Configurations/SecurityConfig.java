@@ -35,6 +35,8 @@ public class SecurityConfig  {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/user/complain/**").permitAll()
 
+                .requestMatchers("/api/hostal/**").permitAll()
+
                 .requestMatchers("/api/user/admin").hasRole(Role.ADMIN.name())
                 .requestMatchers("/api/user/student").hasRole(Role.STUDENT.name())
                 .requestMatchers("/api/user/warden").hasRole(Role.WARDEN.name())
