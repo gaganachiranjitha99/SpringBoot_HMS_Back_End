@@ -11,20 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/api/user/complains")
+@RequestMapping("api/user/complain")
 public class ComplainController {
-
 
     @Autowired
     private ComplainService complainService;
 
-    @PostMapping("/createComplain")
-    public ResponseEntity<Complain> createComplaint(@RequestBody Complain complain) {
-        Complain createdComplaint = complainService.createComplaint(complain);
-        return new ResponseEntity<>(createdComplaint, HttpStatus.CREATED);
+    @PostMapping("/create")
+    public ResponseEntity<Complain> createComplain(@RequestBody Complain complain) {
+        Complain createdComplain = complainService.createComplain(complain);
+        return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
     }
-
 
 }

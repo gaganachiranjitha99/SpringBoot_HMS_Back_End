@@ -10,7 +10,4 @@ import java.util.List;
 public interface ComplainRepo extends JpaRepository<Complain, Long> {
 
 
-
-
-
 }
