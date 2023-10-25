@@ -16,5 +16,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String roomID;
+
+    @Column(nullable = false)
     private String hostalType;
 }

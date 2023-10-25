@@ -15,6 +15,10 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String proID;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String status;
 }
