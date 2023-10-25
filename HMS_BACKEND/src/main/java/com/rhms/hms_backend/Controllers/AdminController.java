@@ -18,8 +18,8 @@ public class AdminController {
 
 
 
-@Autowired
-private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public List<Users> getAllUsers() {

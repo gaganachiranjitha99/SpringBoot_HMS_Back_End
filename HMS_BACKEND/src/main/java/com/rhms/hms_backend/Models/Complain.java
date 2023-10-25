@@ -1,5 +1,6 @@
 package com.rhms.hms_backend.Models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,30 +23,28 @@ public class Complain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long c_id;
 
-    @Column(name = "user_index")
+    @Column(unique = true)
     private String user_index;
 
-    @Column(name = "c_description")
+    @Column(nullable = false)
     private String c_description;
 
-    @Column(name = "c_image")
+    @Column(nullable = false)
     private String c_image;
 
-    @Column(name = "c_itemcode")
+    @Column(nullable = false)
     private String c_itemcode;
 
-    @Column(name = "f_name")
+    @Column(nullable = false)
     private String f_name;
 
-    @Column(name = "l_name")
+    @Column(nullable = false)
     private String l_name;
 
-    @Column(name = "room_no")
-    private String roomNo;
+    @Column(nullable = false)
+    private String room_no;
 
     @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-
     private LocalDateTime createdAt;
 
     @PrePersist
