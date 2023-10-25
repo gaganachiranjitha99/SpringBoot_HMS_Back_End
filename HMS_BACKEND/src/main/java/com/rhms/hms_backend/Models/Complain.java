@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Complain {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long c_id;
 
     @Column(name = "user_index")
