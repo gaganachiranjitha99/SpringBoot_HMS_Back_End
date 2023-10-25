@@ -22,8 +22,8 @@ public class Complain {
     @GeneratedValue
     private Long c_id;
 
-    @Column(name = "student_id")
-    private String studentId;
+    @Column(name = "user_index")
+    private String user_index;
 
     @Column(name = "c_description")
     private String c_description;
