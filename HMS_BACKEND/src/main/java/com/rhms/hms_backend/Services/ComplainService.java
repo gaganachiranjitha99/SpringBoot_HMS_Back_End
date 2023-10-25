@@ -18,6 +18,9 @@ public class ComplainService {
     public Complain createComplain(Complain complain) {
         return complainRepo.save(complain);
     }
+//    public List<Complain> getComplainsByUserIndex(String userIndex) {
+//        return complainRepo.findByUserIndex(userIndex);
+//    }
 
 
 //    public List<Complain> getAllComplaints() {
