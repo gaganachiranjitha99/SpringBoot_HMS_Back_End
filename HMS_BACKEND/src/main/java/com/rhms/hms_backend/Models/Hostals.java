@@ -26,9 +26,9 @@ public class Hostals {
     private String rooms;
 
     @Column(nullable = false)
-    private String wardernName;
+    private String wardern_name;
 
     @Column(nullable = false)
-    private int noOfSubWardens;
+    private int no_of_sub_wardens;
 
 }
