@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ComplainService {
@@ -18,14 +19,12 @@ public class ComplainService {
     public Complain createComplain(Complain complain) {
         return complainRepo.save(complain);
     }
-//    public List<Complain> getComplainsByUserIndex(String userIndex) {
-//        return complainRepo.findByUserIndex(userIndex);
-//    }
 
 
-//    public List<Complain> getAllComplaints() {
-//        return complainRepo.findAll();
-//    }
+
+    public java.util.List<Complain> getAllComplaints() {
+        return complainRepo.findAll();
+    }
 
 
 
