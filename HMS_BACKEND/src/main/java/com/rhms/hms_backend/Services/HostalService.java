@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HostalService {
@@ -24,4 +25,22 @@ public class HostalService {
     public List<Hostals> getAllHostals() {
         return hostalRepo.findAll();
     }
+
+    public Optional<Hostals> getHostalById(Long hostalID) {
+        return hostalRepo.findById(hostalID);
+    }
+
+    public Hostals updateHostal(Long hostalID, Hostals updatedHostal) {
+        if (hostalRepo.existsById(hostalID)) {
+            updatedHostal.setHostalID(hostalID);
+            return hostalRepo.save(updatedHostal);
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteHostal(Long hostalID) {
+        hostalRepo.deleteById(hostalID);
+    }
+
 }
