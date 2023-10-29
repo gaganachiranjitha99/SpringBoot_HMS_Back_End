@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/hostal")
@@ -26,4 +27,20 @@ public class HostalController {
     public List<Hostals> getAllHostals() {
         return hostalService.getAllHostals();
     }
+
+    @GetMapping("/hostals/{hostalID}")
+    public Optional<Hostals> getHostalById(@PathVariable Long hostalID) {
+        return hostalService.getHostalById(hostalID);
+    }
+
+    @PutMapping("/hostals/{hostalID}")
+    public Hostals updateHostal(@PathVariable Long hostalID, @RequestBody Hostals updatedHostal) {
+        return hostalService.updateHostal(hostalID, updatedHostal);
+    }
+
+    @DeleteMapping("hostals/{hostalID}")
+    public void deleteHostal(@PathVariable Long hostalID) {
+        hostalService.deleteHostal(hostalID);
+    }
+
 }
