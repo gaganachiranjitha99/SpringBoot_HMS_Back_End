@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ComplainRepo extends JpaRepository<Complain, Long> {
 
-    List<Complain> findByUserIndex(String userIndex);
+//    List<Complain> findByUserIndex(String user_Index);
 
 }

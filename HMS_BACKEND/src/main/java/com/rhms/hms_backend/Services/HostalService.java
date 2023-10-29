@@ -5,6 +5,8 @@ import com.rhms.hms_backend.Repositories.HostalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HostalService {
 
@@ -17,5 +19,9 @@ public class HostalService {
 
     public Hostals createHostal(Hostals hostals) {
         return hostalRepo.save(hostals);
+    }
+
+    public List<Hostals> getAllHostals() {
+        return hostalRepo.findAll();
     }
 }

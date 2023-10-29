@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HostalRepo extends JpaRepository<Hostals, String> {
+public interface HostalRepo extends JpaRepository<Hostals, Long> {
 }
