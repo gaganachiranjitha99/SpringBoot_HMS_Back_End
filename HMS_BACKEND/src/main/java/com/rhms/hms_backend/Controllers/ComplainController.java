@@ -23,10 +23,6 @@ public class ComplainController {
         Complain createdComplain = complainService.createComplain(complain);
         return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
     }
-//    @GetMapping("/getComplainsByUserIndex/{userIndex}")
-//    public ResponseEntity<List<Complain>> getComplainsByUserIndex(@PathVariable String userIndex) {
-//        List<Complain> complains = complainService.getComplainsByUserIndex(userIndex);
-//        return new ResponseEntity<>(complains, HttpStatus.OK);
-//    }
+
 
 }
