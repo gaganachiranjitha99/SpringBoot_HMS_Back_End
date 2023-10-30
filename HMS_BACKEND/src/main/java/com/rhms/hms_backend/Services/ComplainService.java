@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +30,15 @@ public class ComplainService {
         if (optionalComplaint.isPresent()) {
             return optionalComplaint.get();
         } else {
-            throw new EntityNotFoundException("Complaint with ID " + id + " not found");
+            throw new EntityNotFoundException("Complain with ID " + id + " not found");
         }
     }
 
 
-    public java.util.List<Complain> getAllComplaints() {
-        return complainRepo.findAll();
+    public List<Complain> getAllComplains(){
+        List<Complain> complains = new ArrayList<>();
+        complainRepo.findAll().forEach(complain -> complains.add(complain));
+        return complains;
     }
 
 

@@ -27,7 +27,7 @@ public class ComplainController {
 
     @GetMapping
     private List<Complain> getAllComplaints(){
-        return complainService.getAllComplaints();
+        return complainService.getAllComplains();
     }
 
 
