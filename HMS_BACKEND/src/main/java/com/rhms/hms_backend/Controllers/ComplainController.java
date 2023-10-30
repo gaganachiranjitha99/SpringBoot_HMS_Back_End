@@ -25,8 +25,8 @@ public class ComplainController {
         return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    private List<Complain> getAllComplaints(){
+    @GetMapping("/getAllComplains")
+    private List<Complain> getAllComplains(){
         return complainService.getAllComplains();
     }
 
