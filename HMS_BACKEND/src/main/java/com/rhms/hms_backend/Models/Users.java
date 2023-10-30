@@ -38,6 +38,12 @@ public class Users implements UserDetails {
     @Column(nullable = false)
     private String lname;
 
+    @Column(nullable = true)
+    private String room;
+
+    @Column(nullable = true)
+    private String hostaltype;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -80,5 +86,7 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
 

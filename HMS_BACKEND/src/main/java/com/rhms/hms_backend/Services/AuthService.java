@@ -42,6 +42,8 @@ public class AuthService {
                     .fname(request.getFname())
                     .lname(request.getLname())
                     .user_index(request.getUser_index())
+                    .room(request.getRoom())
+                    .hostaltype(request.getHostaltype())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.STUDENT)
                     .build();

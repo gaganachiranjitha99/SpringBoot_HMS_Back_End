@@ -16,5 +16,7 @@ public class RegisterRequests {
     private String lname;
     private String user_index;
     private String password;
+    private String room;
+    private String hostaltype;
     private String role;
 }
