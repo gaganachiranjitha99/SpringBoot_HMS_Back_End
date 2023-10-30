@@ -41,6 +41,10 @@ public class ComplainService {
         return complains;
     }
 
+    public void delete(Long id) {
+        complainRepo.deleteById(id);
+    }
+
 
 
 }
