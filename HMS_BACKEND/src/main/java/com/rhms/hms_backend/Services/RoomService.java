@@ -27,5 +27,21 @@ public class RoomService {
         return roomRepo.findAll();
     }
 
+    public Optional<Room> getRoomById(Long ID) {
+        return roomRepo.findById(ID);
+    }
+
+    public Room updateRoom(Long ID, Room updatedRoom) {
+        if (roomRepo.existsById(ID)) {
+            updatedRoom.setID(ID);
+            return roomRepo.save(updatedRoom);
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteRoom(Long ID) {
+        roomRepo.deleteById(ID);
+    }
 
 }
