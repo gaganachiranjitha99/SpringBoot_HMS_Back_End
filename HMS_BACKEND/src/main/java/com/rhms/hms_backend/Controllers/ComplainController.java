@@ -23,6 +23,11 @@ public class ComplainController {
         Complain createdComplain = complainService.createComplain(complain);
         return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
     }
+    @GetMapping("/{complaintId}")
+    private Complain getCompalintById(@PathVariable("complaintId") Long complaintID){
+        return complainService.getById(complaintID);
+    }
+    
 
 
 }
