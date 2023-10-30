@@ -31,13 +31,15 @@ public class ComplainController {
         Complain existingComplaint = complainService.getById(complainId);
 
         if (existingComplaint != null) {
-            updatedComplain.setId(complainId);
+            updatedComplain.setC_id(complainId);
             complainService.Save(updatedComplain);
-            return updatedComplain.getId();
+            return updatedComplain.getC_id();
         } else {
             throw new EntityNotFoundException("Complaint with ID " + complainId + " not found");
         }
     }
+
+
 
 
     @GetMapping("/getAllComplains")
