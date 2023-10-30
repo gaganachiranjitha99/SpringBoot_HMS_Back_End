@@ -23,6 +23,13 @@ public class ComplainService {
         return complainRepo.save(complain);
     }
 
+    public void updateComplain(Complain complaint,Long id){
+        complainRepo.save(complaint);
+    }
+    public void Save(Complain complaint){
+        complainRepo.save(complaint);
+    }
+
 
     public Complain getById(Long id){
         Optional<Complain> optionalComplaint = complainRepo.findById(id);
@@ -39,6 +46,10 @@ public class ComplainService {
         List<Complain> complains = new ArrayList<>();
         complainRepo.findAll().forEach(complain -> complains.add(complain));
         return complains;
+    }
+
+    public void delete(Long id) {
+        complainRepo.deleteById(id);
     }
 
 
