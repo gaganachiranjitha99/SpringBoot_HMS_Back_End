@@ -2,12 +2,15 @@ package com.rhms.hms_backend.Services;
 
 import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Repositories.ComplainRepo;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ComplainService {
@@ -21,9 +24,21 @@ public class ComplainService {
     }
 
 
+    public Complain getById(Long id){
+        Optional<Complain> optionalComplaint = complainRepo.findById(id);
 
-    public java.util.List<Complain> getAllComplaints() {
-        return complainRepo.findAll();
+        if (optionalComplaint.isPresent()) {
+            return optionalComplaint.get();
+        } else {
+            throw new EntityNotFoundException("Complain with ID " + id + " not found");
+        }
+    }
+
+
+    public List<Complain> getAllComplains(){
+        List<Complain> complains = new ArrayList<>();
+        complainRepo.findAll().forEach(complain -> complains.add(complain));
+        return complains;
     }
 
 
