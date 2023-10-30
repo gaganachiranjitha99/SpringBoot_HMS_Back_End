@@ -23,7 +23,10 @@ public class ComplainService {
         return complainRepo.save(complain);
     }
 
-    public void updateComplaint(Complain complaint,Long id){
+    public void updateComplain(Complain complaint,Long id){
+        complainRepo.save(complaint);
+    }
+    public void Save(Complain complaint){
         complainRepo.save(complaint);
     }
 
