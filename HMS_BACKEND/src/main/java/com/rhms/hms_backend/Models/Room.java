@@ -23,5 +23,5 @@ public class Room {
     private String room_no;
 
     @Column(nullable = false)
-    private String hostalType;
+    private String 	hostal_type;
 }
