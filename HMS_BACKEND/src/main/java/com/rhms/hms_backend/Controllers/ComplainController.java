@@ -31,10 +31,16 @@ public class ComplainController {
     }
 
 
-    @GetMapping("/{complaintId}")
-    private Complain getCompalintById(@PathVariable("complaintId") Long complaintID){
+    @GetMapping("/getCompalintById/{complaintId}")
+    private Complain getCompalintById(@PathVariable("complainId") Long complaintID){
         return complainService.getById(complaintID);
     }
+
+    @DeleteMapping("/delete/{complainId}")
+    private void DeleteComplain(@PathVariable("complainId") Long id){
+        complainService.delete(id);
+    }
+}
 
 
 
