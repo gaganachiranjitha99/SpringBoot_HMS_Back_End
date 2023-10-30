@@ -1,7 +1,5 @@
 package com.rhms.hms_backend.Controllers;
 
-
-import com.rhms.hms_backend.Models.Hostals;
 import com.rhms.hms_backend.Models.Room;
 import com.rhms.hms_backend.Services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;

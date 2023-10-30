@@ -37,6 +37,7 @@ public class SecurityConfig  {
 
                 .requestMatchers("/api/hostal/**").permitAll()
                 .requestMatchers("/api/room/**") .permitAll()
+                .requestMatchers("/api/property/**") .permitAll()
 
                 .requestMatchers("/api/user/admin").hasRole(Role.ADMIN.name())
                 .requestMatchers("/api/user/student").hasRole(Role.STUDENT.name())
