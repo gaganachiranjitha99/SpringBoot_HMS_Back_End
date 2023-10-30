@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,10 +24,20 @@ public class ComplainController {
         Complain createdComplain = complainService.createComplain(complain);
         return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    private List<Complain> getAllComplaints(){
+        return complainService.getAllComplaints();
+    }
+
+
     @GetMapping("/{complaintId}")
     private Complain getCompalintById(@PathVariable("complaintId") Long complaintID){
         return complainService.getById(complaintID);
     }
+
+
+
     
 
 
