@@ -23,6 +23,10 @@ public class ComplainService {
         return complainRepo.save(complain);
     }
 
+    public void updateComplaint(Complain complaint,Long id){
+        complainRepo.save(complaint);
+    }
+
 
     public Complain getById(Long id){
         Optional<Complain> optionalComplaint = complainRepo.findById(id);
