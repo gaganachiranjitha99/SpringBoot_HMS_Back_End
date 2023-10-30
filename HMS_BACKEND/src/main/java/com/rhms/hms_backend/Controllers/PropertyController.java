@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/property")
@@ -26,5 +27,20 @@ public class PropertyController {
     @GetMapping("/allproperty")
     public List<Property> getAllProperty() {
         return propertyService.getAllProperty();
+    }
+
+    @GetMapping("/oneproperty/{proid}")
+    public Optional<Property> getPropertyById(@PathVariable Long proid) {
+        return propertyService.getPropertyById(proid);
+    }
+
+    @PutMapping("/oneproperty/{proid}")
+    public Property updateProperty(@PathVariable Long proid, @RequestBody Property updatedProperty) {
+        return propertyService.updateProperty(proid, updatedProperty);
+    }
+
+    @DeleteMapping("oneproperty/{proid}")
+    public void deleteProperty(@PathVariable Long proid) {
+        propertyService.deleteProperty(proid);
     }
 }
