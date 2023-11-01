@@ -20,10 +20,10 @@ public class Hostals {
     private Long hostalID;
 
     @Column(unique = true)
-    private String hostal_name;
+    private String hostaltype;
 
     @Column(nullable = false)
-    private String rooms;
+    private String room;
 
     @Column(nullable = false)
     private String wardern_name;
