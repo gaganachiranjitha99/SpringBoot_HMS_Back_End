@@ -56,17 +56,5 @@ public class UserService {
     }
 
 
-//    public User updateProfile(Integer id, User profile) {
-//        User existingUser = userRepo.findById(id).orElse(null);
-//        if (existingUser == null) {
-//            return null;
-//        }
-//        existingUser.setFirstname(profile.getFirstname());
-//        existingUser.setLastname(profile.getLastname());
-//        existingUser.setEmail(profile.getEmail());
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        String encodedPassword = encoder.encode(profile.getPassword());
-//        existingUser.setPassword(encodedPassword);
-//
-//        return userRepo.save(existingUser);
+
     }

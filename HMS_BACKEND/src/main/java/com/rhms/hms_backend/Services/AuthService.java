@@ -32,11 +32,13 @@ public class AuthService {
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.ADMIN)
                     .build();
+
             userRepo.save(users);
             var jwtToken = jwtService.generateToken(users);
             return AccessResponse.builder()
                     .Token(jwtToken)
                     .build();
+
         } else if ("STUDENT".equals(request.getRole())) {
             var users = Users.builder()
                     .fname(request.getFname())
@@ -47,6 +49,49 @@ public class AuthService {
                     .password(passwordEncoder.encode(request.getPassword()))
                     .role(Role.STUDENT)
                     .build();
+            userRepo.save(users);
+            var jwtToken = jwtService.generateToken(users);
+            return AccessResponse.builder()
+                    .Token(jwtToken)
+                    .build();
+
+        } else if ("WARDEN".equals(request.getRole())) {
+            var users = Users.builder()
+                    .fname(request.getFname())
+                    .lname(request.getLname())
+                    .user_index(request.getUser_index())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(Role.WARDEN)
+                    .build();
+            userRepo.save(users);
+            var jwtToken = jwtService.generateToken(users);
+            return AccessResponse.builder()
+                    .Token(jwtToken)
+                    .build();
+
+        } else if ("SUBWARDEN".equals(request.getRole())) {
+            var users = Users.builder()
+                    .fname(request.getFname())
+                    .lname(request.getLname())
+                    .user_index(request.getUser_index())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(Role.SUBWARDEN)
+                    .build();
+            userRepo.save(users);
+            var jwtToken = jwtService.generateToken(users);
+            return AccessResponse.builder()
+                    .Token(jwtToken)
+                    .build();
+
+        } else if ("DEAN".equals(request.getRole())) {
+            var users = Users.builder()
+                    .fname(request.getFname())
+                    .lname(request.getLname())
+                    .user_index(request.getUser_index())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(Role.DEAN)
+                    .build();
+
             userRepo.save(users);
             var jwtToken = jwtService.generateToken(users);
             return AccessResponse.builder()
