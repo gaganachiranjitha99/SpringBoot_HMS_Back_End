@@ -36,16 +36,18 @@ public class Complain {
     private String c_itemcode;
 
     @Column(nullable = false)
-    private String f_name;
+    private String fname;
 
     @Column(nullable = false)
-    private String l_name;
+    private String lname;
 
     @Column(nullable = false)
-    private String room_no;
+    private String room;
 
     @Column(nullable = false)
-    private String admin_level;
+    private String hostaltype;
+
+
 
     @Column(nullable = false)
     private String status;
