@@ -3,12 +3,14 @@ package com.rhms.hms_backend.Controllers;
 
 import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Services.ComplainService;
+import com.rhms.hms_backend.Services.QRCodeService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,53 @@ public class ComplainController {
     @Autowired
     private ComplainService complainService;
 
+    @Autowired
+    private QRCodeService qrCodeService;
+
+//    @PostMapping("/create")
+//    public ResponseEntity<Complain> createComplain(@RequestBody Complain complain) {
+//        Complain createdComplain = complainService.createComplain(complain);
+//        return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
+//    }
+
     @PostMapping("/create")
-    public ResponseEntity<Complain> createComplain(@RequestBody Complain complain) {
-        Complain createdComplain = complainService.createComplain(complain);
-        return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
+    public ResponseEntity<Complain> createComplain(
+            @RequestParam("c_itemcode") MultipartFile cItemCode,
+            @RequestParam("c_description") String cDescription,
+            @RequestParam("c_image") String cImage,
+            @RequestParam("fname") String fname,
+            @RequestParam("lname") String lname,
+            @RequestParam("room") String room,
+            @RequestParam("user_index") String userIndex,
+            @RequestParam("hostaltype") String hostaltype
+    ) {
+        try {
+            // 1. Save the QR code image and get QR code data
+            String qrCodeData = qrCodeService.saveQRCode(cItemCode);
+
+            // 2. Create a Complain object and set the details
+            Complain complain = new Complain();
+            complain.setC_itemcode(qrCodeData);
+            complain.setC_description(cDescription);
+            complain.setFname(fname);
+            complain.setC_image(cImage);
+            complain.setUser_index(userIndex);
+            complain.setLname(lname);
+            complain.setRoom(room);
+            complain.setHostaltype(hostaltype);
+
+            // 3. Save the Complain object to the database
+            Complain createdComplain = complainService.createComplain(complain);
+
+            return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
+
+
+
+
 
     @PutMapping("/updateComplain/{complainId}")
     public Long updateComplain(@PathVariable("complainId") Long complainId, @RequestBody Complain updatedComplain) {
