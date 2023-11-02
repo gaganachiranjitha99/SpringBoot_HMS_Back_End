@@ -48,8 +48,7 @@ public class Complain {
     private String hostaltype;
 
 
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String status;
 
     @Column(name = "created_at")
