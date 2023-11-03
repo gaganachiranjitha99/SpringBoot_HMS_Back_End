@@ -42,7 +42,7 @@ public class AuthControll {
         return new nvBarDetails(fname);
     }
 
-    @GetMapping("/UserProfile")
+    @GetMapping("/userprofile")
     public Users getCurrentUserProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String user_index = authentication.getName();

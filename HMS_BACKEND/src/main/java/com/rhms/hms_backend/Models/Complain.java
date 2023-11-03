@@ -23,7 +23,7 @@ public class Complain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long c_id;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String user_index;
 
     @Column(nullable = false)
