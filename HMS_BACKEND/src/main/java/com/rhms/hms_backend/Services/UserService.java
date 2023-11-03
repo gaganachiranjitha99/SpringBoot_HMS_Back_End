@@ -1,20 +1,23 @@
 package com.rhms.hms_backend.Services;
 
+import com.rhms.hms_backend.Models.StaffUsers;
+import com.rhms.hms_backend.Models.StudentUsers;
 import com.rhms.hms_backend.Models.Users;
+import com.rhms.hms_backend.Repositories.StaffUserRepo;
+import com.rhms.hms_backend.Repositories.StudentUserRepo;
 import com.rhms.hms_backend.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 
 @Service
+
 public class UserService {
 
 
@@ -22,10 +25,20 @@ public class UserService {
     UserRepo userRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    StaffUserRepo staffUserRepo;
+    @Autowired
+    StudentUserRepo studentUserRepo;
 
 
-    public List<Users> getAllUsers() {
-        return userRepo.findAll();
+    @Transactional
+    public List<StaffUsers> getStaffUsersView() {
+        return staffUserRepo.staff_users_view();
+    }
+
+    @Transactional
+    public List<StudentUsers> getStudentUsersView() {
+        return studentUserRepo.student_users_view();
     }
 
     public Users getUserById(Long id) {

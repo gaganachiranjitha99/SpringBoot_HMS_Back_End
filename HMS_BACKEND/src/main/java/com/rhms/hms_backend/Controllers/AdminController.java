@@ -1,13 +1,13 @@
 package com.rhms.hms_backend.Controllers;
 
 
+import com.rhms.hms_backend.Models.StaffUsers;
+import com.rhms.hms_backend.Models.StudentUsers;
 import com.rhms.hms_backend.Models.Users;
-import com.rhms.hms_backend.Repositories.UserRepo;
 import com.rhms.hms_backend.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +21,14 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
-    public List<Users> getAllUsers() {
-        return userService.getAllUsers();
+    @GetMapping("/allstaff")
+    public List<StaffUsers> getStaffUsersView() {
+        return userService.getStaffUsersView();
+    }
+
+    @GetMapping("/allstudent")
+    public List<StudentUsers> getStudentUsersView() {
+        return userService.getStudentUsersView();
     }
 
     @GetMapping("/{id}")
