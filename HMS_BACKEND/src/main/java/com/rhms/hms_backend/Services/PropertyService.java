@@ -31,6 +31,10 @@ public class PropertyService {
         return propertyRepo.findById(proid);
     }
 
+    public Integer getPropertyCount(){
+        return Math.toIntExact(propertyRepo.count());
+    }
+
     public Property updateProperty(Long proid, Property updatedProperty) {
         if (propertyRepo.existsById(proid)) {
             updatedProperty.setProid(proid);

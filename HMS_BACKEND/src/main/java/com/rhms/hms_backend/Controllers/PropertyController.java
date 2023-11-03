@@ -34,6 +34,11 @@ public class PropertyController {
         return propertyService.getPropertyById(proid);
     }
 
+    @GetMapping("/propertyCount")
+    public Integer getPropertyCount(){
+        return propertyService.getPropertyCount();
+    }
+
     @PutMapping("/oneproperty/{proid}")
     public Property updateProperty(@PathVariable Long proid, @RequestBody Property updatedProperty) {
         return propertyService.updateProperty(proid, updatedProperty);

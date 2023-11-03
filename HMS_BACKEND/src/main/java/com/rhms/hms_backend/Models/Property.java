@@ -19,7 +19,7 @@ public class Property {
     private Long proid;
 
     @Column(unique = true)
-    private String item_code;
+    private String c_item_code;
 
     @Column(nullable = false)
     private String name;
