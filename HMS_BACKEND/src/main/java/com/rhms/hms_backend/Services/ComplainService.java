@@ -95,9 +95,11 @@ public class ComplainService {
         }
     }
 
-    public List<Complain> getComplaintsByUserId(String userId) {
+    public List<Complain> getComplainsByUserId(String userId) {
         return complainRepo.findByUserIndex(userId);
     }
+
+
 
 
 

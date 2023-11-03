@@ -111,9 +111,11 @@ public class ComplainController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserId = authentication.getName();
 
-        List<Complain> complains = complainService.getComplaintsByUserId(currentUserId);
+        List<Complain> complains = complainService.getComplainsByUserId(currentUserId);
         return new ResponseEntity<>(complains, HttpStatus.OK);
     }
+
+
 
 
 

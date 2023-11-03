@@ -14,4 +14,7 @@ public interface ComplainRepo extends JpaRepository<Complain, Long> {
 //    List<Complain> findByUserIndex(String user_Index);
 @Query("SELECT c FROM Complain c WHERE c.user_index = :user_index")
 List<Complain> findByUserIndex(@Param("user_index") String user_index);
+
+
+
 }
