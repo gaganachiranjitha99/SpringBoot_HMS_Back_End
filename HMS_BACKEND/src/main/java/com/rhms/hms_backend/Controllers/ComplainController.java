@@ -8,6 +8,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -101,6 +103,20 @@ public class ComplainController {
     private void DeleteComplain(@PathVariable("complainId") Long id){
         complainService.delete(id);
     }
+
+
+    @GetMapping("/getComplainsByCurrentUser")
+    public ResponseEntity<List<Complain>> getComplaintsByCurrentUser() {
+        // Get the currently authenticated user's ID
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserId = authentication.getName();
+
+        List<Complain> complains = complainService.getComplaintsByUserId(currentUserId);
+        return new ResponseEntity<>(complains, HttpStatus.OK);
+    }
+
+
+
 }
 
 
