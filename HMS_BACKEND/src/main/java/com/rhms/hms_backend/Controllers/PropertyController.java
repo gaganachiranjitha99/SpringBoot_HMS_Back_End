@@ -1,7 +1,9 @@
 package com.rhms.hms_backend.Controllers;
 
 import com.rhms.hms_backend.Models.Hostals;
+import com.rhms.hms_backend.Models.Properties;
 import com.rhms.hms_backend.Models.Property;
+import com.rhms.hms_backend.Models.StaffUsers;
 import com.rhms.hms_backend.Services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +26,14 @@ public class PropertyController {
         return new ResponseEntity<>(createdProperty, HttpStatus.CREATED);
     }
 
+//    @GetMapping("/allproperty")
+//    public List<Property> getAllProperty() {
+//        return propertyService.getAllProperty();
+//    }
+
     @GetMapping("/allproperty")
-    public List<Property> getAllProperty() {
-        return propertyService.getAllProperty();
+    public List<Properties> getPropertyView() {
+        return propertyService.getPropertiesView();
     }
 
     @GetMapping("/oneproperty/{proid}")

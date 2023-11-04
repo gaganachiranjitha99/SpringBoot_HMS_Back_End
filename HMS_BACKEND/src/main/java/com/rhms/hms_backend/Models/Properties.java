@@ -6,28 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="studentusers")
+@Table(name="properties")
 @Entity
 @Builder
-public class StudentUsers {
-
+public class Properties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long proid;
 
-    private String user_index;
+    private String c_item_code;
 
-    private String fname;
+    private String name;
 
-    private String room;
+    private String status;
 
-    private String hostaltype;
-
-    private String lname;
-
-    private String role;
 }
