@@ -96,6 +96,8 @@ public class ComplainController {
     }
 
 
+
+
     @GetMapping("/getCompalintById/{complaintId}")
     private Complain getCompalintById(@PathVariable("complainId") Long complaintID){
         return complainService.getById(complaintID);
