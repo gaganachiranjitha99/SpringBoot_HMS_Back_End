@@ -19,7 +19,6 @@ public class WardenComplains {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long c_id;
 
     private String user_index;

@@ -19,7 +19,6 @@ public class SubwardenComplains {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long c_id;
 
     private String user_index;
