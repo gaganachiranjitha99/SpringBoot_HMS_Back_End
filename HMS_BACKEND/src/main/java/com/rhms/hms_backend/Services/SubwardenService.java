@@ -24,10 +24,6 @@ import java.util.List;
 public class SubwardenService {
 
 
-    SubwardenRepo subwardenRepo;
-    @Transactional
-    public List<SubwardenComplains>getFromSubwardenComplains() {
-        return subwardenRepo.get_Complain_From_Subwarden();
 
     @Autowired
     private SubwardenRepo subwardenRepo;

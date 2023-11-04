@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="subwardencomplains")
+@Table(name="wardencomplains")
 @Entity
 @Builder
-public class SubwardenComplains {
+public class WardenComplains {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
