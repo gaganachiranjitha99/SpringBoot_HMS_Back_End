@@ -11,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("api/user/complain")
@@ -109,9 +111,9 @@ public class ComplainController {
     public ResponseEntity<List<Complain>> getComplaintsByCurrentUser() {
         // Get the currently authenticated user's ID
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserId = authentication.getName();
+        String user_index = authentication.getName();
 
-        List<Complain> complains = complainService.getComplainsByUserId(currentUserId);
+        List<Complain> complains = complainService.getComplainsByUserId(user_index);
         return new ResponseEntity<>(complains, HttpStatus.OK);
     }
 
