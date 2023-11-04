@@ -47,6 +47,8 @@ public class SecurityConfig  {
 
                 .requestMatchers("api/admin/**").permitAll()
 
+                .requestMatchers("api/subwarden/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
