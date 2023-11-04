@@ -1,23 +1,26 @@
 package com.rhms.hms_backend.Controllers;
 
-import com.rhms.hms_backend.Models.SubwardenComplains;
-import com.rhms.hms_backend.Services.SubwardenService;
+import com.rhms.hms_backend.Models.WardenComplains;
 import com.rhms.hms_backend.Services.WardenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("api/warden")
+@RestController
+@RequestMapping("/api/warden")
 public class WardenControl {
 
     @Autowired
     private WardenService wardenService;
-    @GetMapping("/getComplainFromSubwarden")
-    public List<SubwardenComplains> getSubwardenView() {
-        return wardenService.getFromSubwardenComplains();
+    @GetMapping("/getAllComplainsfromWarden")
+    public List<WardenComplains> getWardenView() {
+        return wardenService.warden_null_complain_view();
+    }
+
+    @PutMapping("/getresolvebywarden/{c_id}")
+    public void resolveComplain(@PathVariable Long c_id) {
+        wardenService.resolveComplain(c_id);
     }
 }
