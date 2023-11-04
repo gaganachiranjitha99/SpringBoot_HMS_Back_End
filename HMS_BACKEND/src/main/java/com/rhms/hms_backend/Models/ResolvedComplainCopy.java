@@ -41,5 +41,4 @@ public class ResolvedComplainCopy {
 
     private LocalDateTime createdAt;
 
-
 }
