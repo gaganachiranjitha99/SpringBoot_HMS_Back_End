@@ -54,6 +54,7 @@ public class SecurityConfig  {
                 .requestMatchers("api/admin/**").permitAll()
 
                 .requestMatchers("/api/subwarden/**").permitAll()
+                .requestMatchers("/api/dean/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()

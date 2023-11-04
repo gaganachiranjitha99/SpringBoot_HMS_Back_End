@@ -110,6 +110,8 @@ public class ComplainService {
         return complainResolvedRepo.all_resolved_complain_view();
     }
 
-
+    public List<ResolvedComplain> getResolveComplainsById(String user_index) {
+        return complainResolvedRepo.findByUserIndex(user_index);
+    }
 
 }

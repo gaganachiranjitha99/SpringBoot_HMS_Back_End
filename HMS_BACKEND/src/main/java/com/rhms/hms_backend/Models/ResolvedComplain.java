@@ -42,10 +42,5 @@ public class ResolvedComplain {
 
     private LocalDateTime createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
 
 }

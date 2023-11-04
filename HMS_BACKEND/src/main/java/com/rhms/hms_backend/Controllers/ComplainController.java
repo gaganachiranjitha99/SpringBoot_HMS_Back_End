@@ -120,6 +120,15 @@ public class ComplainController {
     }
 
 
+    @GetMapping("/getResolvedComplainsByUser")
+    public ResponseEntity<List<ResolvedComplain>> getResolvedComplaintsByUser() {
+        // Get the currently authenticated user's ID
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user_index = authentication.getName();
+
+        List<ResolvedComplain> ResolvedComplain = complainService.getResolveComplainsById(user_index);
+        return new ResponseEntity<>(ResolvedComplain, HttpStatus.OK);
+    }
 
 
 }
