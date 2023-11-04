@@ -34,7 +34,7 @@ public class SecurityConfig  {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/user/complain/**").permitAll()
-                    .requestMatchers("/api/warden/**").permitAll()
+                 .requestMatchers("/api/warden/**").permitAll()
 
                 .requestMatchers("/api/hostal/**").permitAll()
                 .requestMatchers("/api/room/**") .permitAll()
@@ -48,7 +48,7 @@ public class SecurityConfig  {
 
                 .requestMatchers("api/admin/**").permitAll()
 
-                .requestMatchers("api/subwarden/**").permitAll()
+                .requestMatchers("/api/subwarden/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()

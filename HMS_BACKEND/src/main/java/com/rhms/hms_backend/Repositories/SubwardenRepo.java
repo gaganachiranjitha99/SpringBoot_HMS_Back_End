@@ -8,18 +8,20 @@ import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Models.StudentUsers;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface SubwardenRepo extends JpaRepository<Complain,Long> {
+public interface SubwardenRepo extends JpaRepository<SubwardenComplains,Long> {
 
     @Transactional
-    @Procedure(procedureName="get_Complain_From_Complains")
-    List<Complain>getnullcomplains();
+    @Procedure(procedureName="subwarden_complain_view")
+    List<SubwardenComplains> subwarden_complain_view();
 
 
 

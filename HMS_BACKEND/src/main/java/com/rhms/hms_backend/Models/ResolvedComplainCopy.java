@@ -1,6 +1,5 @@
 package com.rhms.hms_backend.Models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +8,14 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="wardencomplains")
-@Entity
+@Data
 @Builder
-public class WardenComplains {
+@Table(name = "resolvedcomplaincopy")
+
+public class ResolvedComplainCopy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +40,6 @@ public class WardenComplains {
     private String status;
 
     private LocalDateTime createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
 
 
 }

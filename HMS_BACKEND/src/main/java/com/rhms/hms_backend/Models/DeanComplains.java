@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="wardencomplains")
+@Table(name="subwardencomplains")
 @Entity
 @Builder
-public class WardenComplains {
+public class DeanComplains {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +45,5 @@ public class WardenComplains {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
-
 
 }
