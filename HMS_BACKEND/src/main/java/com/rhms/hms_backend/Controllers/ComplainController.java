@@ -2,6 +2,8 @@ package com.rhms.hms_backend.Controllers;
 
 
 import com.rhms.hms_backend.Models.Complain;
+import com.rhms.hms_backend.Models.ResolvedComplain;
+import com.rhms.hms_backend.Models.ResolvedComplainCopy;
 import com.rhms.hms_backend.Services.ComplainService;
 import com.rhms.hms_backend.Services.QRCodeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,12 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,11 +28,6 @@ public class ComplainController {
     @Autowired
     private QRCodeService qrCodeService;
 
-//    @PostMapping("/create")
-//    public ResponseEntity<Complain> createComplain(@RequestBody Complain complain) {
-//        Complain createdComplain = complainService.createComplain(complain);
-//        return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
-//    }
 
     @PostMapping("/create")
     public ResponseEntity<Complain> createComplain(
@@ -119,6 +113,11 @@ public class ComplainController {
         return new ResponseEntity<>(complains, HttpStatus.OK);
     }
 
+
+    @GetMapping("/getAllResolvedComplains")
+    public List<ResolvedComplain> getResolvedComplainView() {
+        return complainService.getAllResolvedComplains();
+    }
 
 
 

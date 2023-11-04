@@ -23,8 +23,12 @@ public class PropertyService {
         this.propertiesRepo = propertiesRepo;
     }
 
-    public Property createProperty(Property property) {
-        return propertyRepo.save(property);
+//    public Property createProperty(Property property) {
+//        return propertyRepo.save(property);
+//    }
+
+    public void insertProperty(String cItemCode, String name, String status) {
+        propertiesRepo.insertProperty(cItemCode, name, status);
     }
 
 //    public List<Property> getAllProperty() {

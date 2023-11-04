@@ -20,10 +20,20 @@ public class PropertyController {
     @Autowired
     private PropertyService propertyService;
 
+//    @PostMapping("/create")
+//    public ResponseEntity<Property> createProperty(@RequestBody Property property) {
+//        Property createdProperty = propertyService.createProperty(property);
+//        return new ResponseEntity<>(createdProperty, HttpStatus.CREATED);
+//    }
+
     @PostMapping("/create")
-    public ResponseEntity<Property> createProperty(@RequestBody Property property) {
-        Property createdProperty = propertyService.createProperty(property);
-        return new ResponseEntity<>(createdProperty, HttpStatus.CREATED);
+    public ResponseEntity<String> insertProperty(@RequestBody Properties properties) {
+        try {
+            propertyService.insertProperty(properties.getC_item_code(), properties.getName(), properties.getStatus());
+            return new ResponseEntity<>("Property insert successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to insert property: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 //    @GetMapping("/allproperty")

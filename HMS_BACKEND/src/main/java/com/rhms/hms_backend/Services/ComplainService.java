@@ -8,7 +8,11 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.encoder.QRCode;
 import com.rhms.hms_backend.Models.Complain;
+import com.rhms.hms_backend.Models.ResolvedComplain;
+import com.rhms.hms_backend.Models.ResolvedComplainCopy;
+import com.rhms.hms_backend.Models.SubwardenComplains;
 import com.rhms.hms_backend.Repositories.ComplainRepo;
+import com.rhms.hms_backend.Repositories.ComplainResolvedRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +37,8 @@ public class ComplainService {
    @Autowired
    private ComplainRepo complainRepo;
 
-
-//    public Complain createComplain(Complain complain) {
-//        return complainRepo.save(complain);
-//    }
+   @Autowired
+   private ComplainResolvedRepo complainResolvedRepo;
 
     public Complain createComplain(Complain complain) {
         return complainRepo.save(complain);
@@ -103,6 +105,10 @@ public class ComplainService {
     }
 
 
+    @Transactional
+    public List<ResolvedComplain> getAllResolvedComplains() {
+        return complainResolvedRepo.all_resolved_complain_view();
+    }
 
 
 
