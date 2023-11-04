@@ -25,7 +25,9 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
+
 public class ComplainService {
 
    @Autowired
@@ -95,8 +97,9 @@ public class ComplainService {
         }
     }
 
-    public List<Complain> getComplainsByUserId(String userId) {
-        return complainRepo.findByUserIndex(userId);
+
+    public List<Complain> getComplainsByUserId(String user_index) {
+        return complainRepo.findByUserIndex(user_index);
     }
 
 
