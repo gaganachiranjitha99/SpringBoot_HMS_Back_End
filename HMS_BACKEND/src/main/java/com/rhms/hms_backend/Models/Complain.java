@@ -63,5 +63,8 @@ public class Complain {
     }
 
 
+    public Long getC_id() {
+        return c_id;
+    }
 
 }
