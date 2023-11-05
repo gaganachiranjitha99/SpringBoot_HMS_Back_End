@@ -34,8 +34,7 @@ public class ReportService {
     private ReportRepo ReportRepo;
 
     private final JdbcTemplate jdbcTemplate;
-    @Autowired
-    private final DailyReportRepo dailyReportRepo;
+
 
     //local variable to store current data.
     LocalDate currentDate=LocalDate.now();
@@ -76,7 +75,42 @@ public class ReportService {
             return  "report generated succesfully at:"+reportPath;
         }
 
-        private static class DailyReportRowMapper implements RowMapper<DailyReport>{
+
+    public String exportMonthlyReport() throws FileNotFoundException, JRException{
+
+        String reportPath="D:\\monthly report\\";
+        //retrive all the records from the daily report table table
+        List<DailyReport> reportdata=jdbcTemplate.query("CALL CreateCurrentMonthComplaintView();",new DailyReportRowMapper());
+
+
+
+        File file= ResourceUtils.getFile("classpath:monthlyreport.jrxml");
+        JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
+
+        JRBeanCollectionDataSource source=new JRBeanCollectionDataSource(reportdata);
+        Map<String,Object> parameters=new HashMap<>();
+        parameters.put("Createdby","Faculty of technology");
+
+        //saving the report file in to the database
+        String sql="INSERT INTO reports(report_name,path,date)VALUES(?,?,?)";
+        KeyHolder keyHolder=new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, "Monthly" + dateCreated + ".pdf");
+            ps.setString(2, reportPath + ".pdf");
+            ps.setTimestamp(3,new Timestamp(System.currentTimeMillis()));
+            return ps;
+        },keyHolder);
+
+        // print the report
+        JasperPrint print= JasperFillManager.fillReport(jasperReport,parameters,source);
+        JasperExportManager.exportReportToPdfFile(print,reportPath+"Complains"+System.currentTimeMillis()+".pdf");
+
+        return  "report generated succesfully at:"+reportPath;
+    }
+
+
+    private static class DailyReportRowMapper implements RowMapper<DailyReport>{
 
 
             @Override
