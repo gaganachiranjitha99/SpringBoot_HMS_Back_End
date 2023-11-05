@@ -38,10 +38,7 @@ public class ReportController {
         return reportService.getAllReportLog();
     }
 
-//    @GetMapping("/getDailyReportData")
-//    public List<DailyReport> getDailyReport() {
-//        return dailyReportService.getDailyReportView();
-//    }
+
 
 
 }
