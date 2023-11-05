@@ -3,7 +3,6 @@ package com.rhms.hms_backend.Controllers;
 import com.rhms.hms_backend.Services.ReportService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +20,12 @@ public class ReportController {
     public String generateDailyReport()throws JRException, FileNotFoundException{
         return dailyReportService.exportDailyReport();
     }
+
+//    @GetMapping("/getDailyReportData")
+//    public List<DailyReport> getDailyReport() {
+//        return dailyReportService.getDailyReportView();
+//    }
+
 
 }
 

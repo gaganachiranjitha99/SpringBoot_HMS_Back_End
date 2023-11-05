@@ -1,23 +1,25 @@
 package com.rhms.hms_backend.Services;
 
 import com.rhms.hms_backend.Models.Complain;
+import com.rhms.hms_backend.Models.DailyReport;
 import com.rhms.hms_backend.Repositories.ComplainRepo;
+import com.rhms.hms_backend.Repositories.DailyReportRepo;
 import com.rhms.hms_backend.Repositories.ReportRepo;
 import lombok.RequiredArgsConstructor;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -26,12 +28,14 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReportService {
     @Autowired
-    private ReportRepo dailyReportRepo;
+    private ReportRepo ReportRepo;
 
     private final JdbcTemplate jdbcTemplate;
-    private final ComplainRepo complainRepo;
+    @Autowired
+    private final DailyReportRepo dailyReportRepo;
 
     //local variable to store current data.
     LocalDate currentDate=LocalDate.now();
@@ -41,14 +45,16 @@ public class ReportService {
 
     public String exportDailyReport() throws FileNotFoundException, JRException{
 
-        String reportPath="C:\\Users\\msi\\Documents\\GitHub\\SpringBoot_HMS_Back_End\\HMS_BACKEND\\report";
-        //retrive all the records from the complain table
-        List<Complain> complains=complainRepo.findAll();
+        String reportPath="D:\\daily report\\";
+        //retrive all the records from the daily report table table
+        List<DailyReport> reportdata=jdbcTemplate.query("CALL CreateTodayComplaintView();",new DailyReportRowMapper());
+
+
 
         File file= ResourceUtils.getFile("classpath:dailyreport.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
-        JRBeanCollectionDataSource source=new JRBeanCollectionDataSource(complains);
+        JRBeanCollectionDataSource source=new JRBeanCollectionDataSource(reportdata);
         Map<String,Object> parameters=new HashMap<>();
         parameters.put("Createdby","Faculty of technology");
 
@@ -69,4 +75,25 @@ public class ReportService {
 
             return  "report generated succesfully at:"+reportPath;
         }
+
+        private static class DailyReportRowMapper implements RowMapper<DailyReport>{
+
+
+            @Override
+            public DailyReport mapRow(ResultSet rs, int rowNum) throws SQLException {
+                DailyReport dailyReport=new DailyReport();
+                dailyReport.setC_id(rs.getLong("c_id"));
+                dailyReport.setUser_index(rs.getString("user_index"));
+                dailyReport.setC_description(rs.getString("c_description"));
+                dailyReport.setC_itemcode(rs.getString("c_itemcode"));
+                dailyReport.setHostaltype(rs.getString("hostaltype"));
+                dailyReport.setRoom(rs.getString("room"));
+                dailyReport.setStatus(rs.getString("status"));
+                dailyReport.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+
+
+                return dailyReport;
+            }
+        }
+
     }
