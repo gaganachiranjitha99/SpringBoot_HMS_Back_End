@@ -1,10 +1,7 @@
 package com.rhms.hms_backend.Services;
 
-import com.rhms.hms_backend.Models.Complain;
-import com.rhms.hms_backend.Models.SubwardenComplains;
 import com.rhms.hms_backend.Models.WardenComplains;
 import com.rhms.hms_backend.Repositories.ComplaintAcceeptWardenRepo;
-import com.rhms.hms_backend.Repositories.SubwardenRepo;
 import com.rhms.hms_backend.Repositories.WardenRepo;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,7 @@ public class WardenService {
 
     }
 
+    //UPDATE resolve Accept STATUS
     public void resolveComplain(Long c_id) {
         WardenComplains wardenComplains = complaintAcceeptWardenRepo.findById(c_id).orElseThrow(() -> new EntityNotFoundException(c_id.toString()));
         wardenComplains.setStatus("Accepted!");

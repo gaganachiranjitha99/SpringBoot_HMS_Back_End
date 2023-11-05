@@ -1,9 +1,6 @@
 package com.rhms.hms_backend.Repositories;
 
-import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Models.ResolvedComplain;
-import com.rhms.hms_backend.Models.ResolvedComplainCopy;
-import com.rhms.hms_backend.Models.SubwardenComplains;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
