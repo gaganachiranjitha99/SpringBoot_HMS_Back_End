@@ -1,7 +1,7 @@
 package com.rhms.hms_backend.Services;
 
 import com.rhms.hms_backend.Models.Properties;
-import com.rhms.hms_backend.Models.Property;
+import com.rhms.hms_backend.Models.PropertyView;
 import com.rhms.hms_backend.Repositories.PropertiesRepo;
 import com.rhms.hms_backend.Repositories.PropertyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,8 @@ public class PropertyService {
 //        return propertyRepo.save(property);
 //    }
 
-    public void insertProperty(String cItemCode, String name, String status) {
-        propertiesRepo.insertProperty(cItemCode, name, status);
+    public void insertProperty(String c_itemcode, String name, String status) {
+        propertiesRepo.insertProperty(c_itemcode, name, status);
     }
 
 //    public List<Property> getAllProperty() {
@@ -40,7 +40,7 @@ public class PropertyService {
         return propertiesRepo.property_view();
     }
 
-    public Optional<Property> getPropertyById(Long proid) {
+    public Optional<PropertyView> getPropertyById(Long proid) {
         return propertyRepo.findById(proid);
     }
 
@@ -48,10 +48,10 @@ public class PropertyService {
         return Math.toIntExact(propertyRepo.count());
     }
 
-    public Property updateProperty(Long proid, Property updatedProperty) {
+    public PropertyView updateProperty(Long proid, PropertyView updatedPropertyView) {
         if (propertyRepo.existsById(proid)) {
-            updatedProperty.setProid(proid);
-            return propertyRepo.save(updatedProperty);
+            updatedPropertyView.setProid(proid);
+            return propertyRepo.save(updatedPropertyView);
         } else {
             return null;
         }

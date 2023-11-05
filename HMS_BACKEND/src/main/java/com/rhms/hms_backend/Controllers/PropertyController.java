@@ -1,9 +1,7 @@
 package com.rhms.hms_backend.Controllers;
 
-import com.rhms.hms_backend.Models.Hostals;
 import com.rhms.hms_backend.Models.Properties;
-import com.rhms.hms_backend.Models.Property;
-import com.rhms.hms_backend.Models.StaffUsers;
+import com.rhms.hms_backend.Models.PropertyView;
 import com.rhms.hms_backend.Services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +27,7 @@ public class PropertyController {
     @PostMapping("/create")
     public ResponseEntity<String> insertProperty(@RequestBody Properties properties) {
         try {
-            propertyService.insertProperty(properties.getC_item_code(), properties.getName(), properties.getStatus());
+            propertyService.insertProperty(properties.getC_itemcode(), properties.getName(), properties.getStatus());
             return new ResponseEntity<>("Property insert successfully", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to insert property: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,7 +45,7 @@ public class PropertyController {
     }
 
     @GetMapping("/oneproperty/{proid}")
-    public Optional<Property> getPropertyById(@PathVariable Long proid) {
+    public Optional<PropertyView> getPropertyById(@PathVariable Long proid) {
         return propertyService.getPropertyById(proid);
     }
 
@@ -57,8 +55,8 @@ public class PropertyController {
     }
 
     @PutMapping("/oneproperty/{proid}")
-    public Property updateProperty(@PathVariable Long proid, @RequestBody Property updatedProperty) {
-        return propertyService.updateProperty(proid, updatedProperty);
+    public PropertyView updateProperty(@PathVariable Long proid, @RequestBody PropertyView updatedPropertyView) {
+        return propertyService.updateProperty(proid, updatedPropertyView);
     }
 
     @DeleteMapping("oneproperty/{proid}")

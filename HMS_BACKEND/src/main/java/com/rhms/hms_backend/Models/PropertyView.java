@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Table(name = "property")
-public class Property {
+public class PropertyView {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long proid;
 
     @Column(unique = true)
-    private String c_item_code;
+    private String c_itemcode;
 
     @Column(nullable = false)
     private String name;
