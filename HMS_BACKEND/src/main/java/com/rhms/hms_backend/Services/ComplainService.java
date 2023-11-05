@@ -6,14 +6,8 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import com.rhms.hms_backend.Models.Complain;
-import com.rhms.hms_backend.Models.DeanComplains;
-import com.rhms.hms_backend.Models.ResolvedComplain;
-import com.rhms.hms_backend.Models.WardenComplains;
-import com.rhms.hms_backend.Repositories.ComplainRepo;
-import com.rhms.hms_backend.Repositories.ComplainResolvedRepo;
-import com.rhms.hms_backend.Repositories.DeanRepo;
-import com.rhms.hms_backend.Repositories.WardenRepo;
+import com.rhms.hms_backend.Models.*;
+import com.rhms.hms_backend.Repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +38,9 @@ public class ComplainService {
 
    @Autowired
    private DeanRepo deanRepo;
+
+   @Autowired
+   private ResolveComplainCopyRepo resolveComplainCopyRepo;
 
     public Complain createComplain(Complain complain) {
         return complainRepo.save(complain);
@@ -127,4 +124,7 @@ public class ComplainService {
         return deanRepo.findByUserIndex(user_index);
     }
 
+    public List<ResolvedComplainCopy> getAllResolvedComplainsLog() {
+        return resolveComplainCopyRepo.findAll();
+    }
 }

@@ -155,6 +155,15 @@ public class ComplainController {
         return new ResponseEntity<>(deanComplains, HttpStatus.OK);
     }
 
+
+    //Get All log file data from resolved complaincopy Table
+
+    @GetMapping("/resolvedcomplainscopy")
+    public ResponseEntity<List<ResolvedComplainCopy>> getAllResolvedComplains() {
+        List<ResolvedComplainCopy> resolvedComplainCopies = complainService.getAllResolvedComplainsLog();
+        return new ResponseEntity<>(resolvedComplainCopies, HttpStatus.OK);
+    }
+
 }
 
 
