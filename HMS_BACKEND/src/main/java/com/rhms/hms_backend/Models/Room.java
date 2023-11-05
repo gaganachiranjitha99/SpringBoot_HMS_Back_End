@@ -19,9 +19,8 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
 
-    @Column(unique = true)
-    private String room_no;
-
-    @Column(nullable = false)
-    private String 	hostal_type;
+    private String roomNo;
+    private int roomCapacity;
+    private String roomName;
+    private String location;
 }
