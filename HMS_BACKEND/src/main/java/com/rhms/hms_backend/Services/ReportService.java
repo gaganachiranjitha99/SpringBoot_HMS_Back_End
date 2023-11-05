@@ -2,6 +2,8 @@ package com.rhms.hms_backend.Services;
 
 import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Models.DailyReport;
+import com.rhms.hms_backend.Models.Reports;
+import com.rhms.hms_backend.Models.ResolvedComplain;
 import com.rhms.hms_backend.Repositories.ComplainRepo;
 import com.rhms.hms_backend.Repositories.DailyReportRepo;
 import com.rhms.hms_backend.Repositories.ReportRepo;
@@ -31,7 +33,7 @@ import java.util.Map;
 @Transactional
 public class ReportService {
     @Autowired
-    private ReportRepo ReportRepo;
+    private ReportRepo reportRepo;
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -128,6 +130,15 @@ public class ReportService {
 
                 return dailyReport;
             }
+
+
+
+
+
         }
+
+    public List<Reports> getAllReportLog() {
+        return reportRepo.findAll();
+    }
 
     }
