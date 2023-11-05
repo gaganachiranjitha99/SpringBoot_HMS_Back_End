@@ -21,6 +21,11 @@ public class ReportController {
         return dailyReportService.exportDailyReport();
     }
 
+    @GetMapping("/monthlyReport")
+    public String generateMonthlyReport()throws JRException, FileNotFoundException{
+        return dailyReportService.exportMonthlyReport();
+    }
+
 //    @GetMapping("/getDailyReportData")
 //    public List<DailyReport> getDailyReport() {
 //        return dailyReportService.getDailyReportView();
