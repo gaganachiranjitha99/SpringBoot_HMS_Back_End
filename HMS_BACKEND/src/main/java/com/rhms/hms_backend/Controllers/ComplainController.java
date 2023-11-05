@@ -1,9 +1,7 @@
 package com.rhms.hms_backend.Controllers;
 
 
-import com.rhms.hms_backend.Models.Complain;
-import com.rhms.hms_backend.Models.ResolvedComplain;
-import com.rhms.hms_backend.Models.ResolvedComplainCopy;
+import com.rhms.hms_backend.Models.*;
 import com.rhms.hms_backend.Services.ComplainService;
 import com.rhms.hms_backend.Services.QRCodeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -103,6 +101,7 @@ public class ComplainController {
     }
 
 
+//Get Subwarden Complaints By Current user
     @GetMapping("/getComplainsByCurrentUser")
     public ResponseEntity<List<Complain>> getComplaintsByCurrentUser() {
         // Get the currently authenticated user's ID
@@ -114,12 +113,14 @@ public class ComplainController {
     }
 
 
+    //Get All complaints
     @GetMapping("/getAllResolvedComplains")
     public List<ResolvedComplain> getResolvedComplainView() {
         return complainService.getAllResolvedComplains();
     }
 
 
+//Get All Resolved complains By Current user
     @GetMapping("/getResolvedComplainsByUser")
     public ResponseEntity<List<ResolvedComplain>> getResolvedComplaintsByUser() {
         // Get the currently authenticated user's ID
@@ -130,6 +131,29 @@ public class ComplainController {
         return new ResponseEntity<>(ResolvedComplain, HttpStatus.OK);
     }
 
+
+    //Get Warden Complaint by Current user
+    @GetMapping("/getWardenComplainsByCurrentUser")
+    public ResponseEntity<List<WardenComplains>> getWardenComplaintsByCurrentUser() {
+        // Get the currently authenticated user's ID
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user_index = authentication.getName();
+
+        List<WardenComplains> wardenComplains = complainService.getWardenComplainsByUserId(user_index);
+        return new ResponseEntity<>(wardenComplains, HttpStatus.OK);
+    }
+
+
+    //Get Dean complaints By Current user
+    @GetMapping("/getDeanComplainsByCurrentUser")
+    public ResponseEntity<List<DeanComplains>> getDeanComplaintsByCurrentUser() {
+        // Get the currently authenticated user's ID
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user_index = authentication.getName();
+
+        List<DeanComplains> deanComplains = complainService.getDeanComplainsByUserId(user_index);
+        return new ResponseEntity<>(deanComplains, HttpStatus.OK);
+    }
 
 }
 

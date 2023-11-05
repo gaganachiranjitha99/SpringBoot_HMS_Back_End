@@ -6,24 +6,23 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.encoder.QRCode;
 import com.rhms.hms_backend.Models.Complain;
+import com.rhms.hms_backend.Models.DeanComplains;
 import com.rhms.hms_backend.Models.ResolvedComplain;
-import com.rhms.hms_backend.Models.ResolvedComplainCopy;
-import com.rhms.hms_backend.Models.SubwardenComplains;
+import com.rhms.hms_backend.Models.WardenComplains;
 import com.rhms.hms_backend.Repositories.ComplainRepo;
 import com.rhms.hms_backend.Repositories.ComplainResolvedRepo;
+import com.rhms.hms_backend.Repositories.DeanRepo;
+import com.rhms.hms_backend.Repositories.WardenRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -39,6 +38,12 @@ public class ComplainService {
 
    @Autowired
    private ComplainResolvedRepo complainResolvedRepo;
+
+   @Autowired
+   private WardenRepo wardenRepo;
+
+   @Autowired
+   private DeanRepo deanRepo;
 
     public Complain createComplain(Complain complain) {
         return complainRepo.save(complain);
@@ -112,6 +117,14 @@ public class ComplainService {
 
     public List<ResolvedComplain> getResolveComplainsById(String user_index) {
         return complainResolvedRepo.findByUserIndex(user_index);
+    }
+
+    public List<WardenComplains> getWardenComplainsByUserId(String user_index) {
+        return wardenRepo.findByUserIndex(user_index);
+    }
+
+    public List<DeanComplains> getDeanComplainsByUserId(String user_index) {
+        return deanRepo.findByUserIndex(user_index);
     }
 
 }
