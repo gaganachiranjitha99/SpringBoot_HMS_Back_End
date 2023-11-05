@@ -50,10 +50,10 @@
                 <text><![CDATA[MONTHLY REPORT]]></text>
             </staticText>
             <image>
-                <reportElement x="10" y="0" width="120" height="109" uuid="1da61857-af2d-4c4e-9f9b-c3fbad787d26">
+                <reportElement x="10" y="0" width="140" height="140" uuid="1da61857-af2d-4c4e-9f9b-c3fbad787d26">
                     <property name="com.jaspersoft.studio.unit.width" value="px"/>
                 </reportElement>
-                <imageExpression><![CDATA["C:/Users/msi/Desktop/hms.png"]]></imageExpression>
+                <imageExpression><![CDATA["C:/Users/milin/Documents/HOSTAL_MANAGEMENT_SYSTEM/BACK_END/SpringBoot_HMS_Back_End/HMS_BACKEND/report/ReportAssests/hms.png"]]></imageExpression>
             </image>
             <line>
                 <reportElement x="-10" y="120" width="821" height="1" uuid="b2fec21e-6e34-4534-bb66-e1f26919c317"/>

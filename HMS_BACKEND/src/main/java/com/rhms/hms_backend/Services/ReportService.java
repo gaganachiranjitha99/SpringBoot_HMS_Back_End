@@ -1,11 +1,7 @@
 package com.rhms.hms_backend.Services;
 
-import com.rhms.hms_backend.Models.Complain;
 import com.rhms.hms_backend.Models.DailyReport;
 import com.rhms.hms_backend.Models.Reports;
-import com.rhms.hms_backend.Models.ResolvedComplain;
-import com.rhms.hms_backend.Repositories.ComplainRepo;
-import com.rhms.hms_backend.Repositories.DailyReportRepo;
 import com.rhms.hms_backend.Repositories.ReportRepo;
 import lombok.RequiredArgsConstructor;
 import net.sf.jasperreports.engine.*;
@@ -46,7 +42,7 @@ public class ReportService {
 
     public String exportDailyReport() throws FileNotFoundException, JRException{
 
-        String reportPath="D:\\daily report\\";
+        String reportPath="C:\\Users\\milin\\Documents\\HOSTAL_MANAGEMENT_SYSTEM\\BACK_END\\SpringBoot_HMS_Back_End\\HMS_BACKEND\\report\\Daily Reports\\";
         //retrive all the records from the daily report table table
         List<DailyReport> reportdata=jdbcTemplate.query("CALL CreateTodayComplaintView();",new DailyReportRowMapper());
 
@@ -80,7 +76,7 @@ public class ReportService {
 
     public String exportMonthlyReport() throws FileNotFoundException, JRException{
 
-        String reportPath="D:\\monthly report\\";
+        String reportPath="C:\\Users\\milin\\Documents\\HOSTAL_MANAGEMENT_SYSTEM\\BACK_END\\SpringBoot_HMS_Back_End\\HMS_BACKEND\\report\\Monthly Reports\\";
         //retrive all the records from the daily report table table
         List<DailyReport> reportdata=jdbcTemplate.query("CALL CreateCurrentMonthComplaintView();",new DailyReportRowMapper());
 
