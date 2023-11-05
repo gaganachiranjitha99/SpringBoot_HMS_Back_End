@@ -17,7 +17,7 @@ public class Properties {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long proid;
 
-    private String c_item_code;
+    private String c_itemcode;
 
     private String name;
 

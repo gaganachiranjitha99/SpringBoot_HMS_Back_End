@@ -18,5 +18,5 @@ public interface PropertiesRepo extends JpaRepository<Properties, Long> {
 
     @Transactional
     @Procedure(procedureName = "insert_property")
-    void insertProperty(@Param("c_item_code_param") String cItemCode, @Param("name_param") String name, @Param("status_param") String status);
+    void insertProperty(@Param("c_itemcode_param") String c_itemcode, @Param("name_param") String name, @Param("status_param") String status);
 }
