@@ -27,7 +27,7 @@
     </field>
     <field name="status" class="java.lang.String">
     </field>
-    <field name="createdAt" class="java.time.LocalDateTime">
+    <field name="created_at" class="java.time.LocalDateTime">
     </field>
 
     <background>
@@ -171,7 +171,7 @@
                     <reportElement style="Detail" x="623" y="0" width="89" height="15" uuid="2bdcadb7-6fbd-4d88-999e-38a6e1922780">
                         <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52cd0d33-b982-46f8-9732-5bba0e2e3cc3"/>
                     </reportElement>
-                    <textFieldExpression><![CDATA[$F{createdAt}]]></textFieldExpression>
+                    <textFieldExpression><![CDATA[$F{created_at}]]></textFieldExpression>
                 </textField>
             </frame>
         </band>
