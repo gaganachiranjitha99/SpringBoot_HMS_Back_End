@@ -70,10 +70,10 @@ public class ComplainController {
                                                    @RequestParam("lname") String lname,
                                                    @RequestParam("room") String room,
                                                    @RequestParam("c_image") String c_image,
-                                                   @RequestParam("hostaltype") String hostaltype,
-                                                   @RequestParam("status") String status) {
+                                                   @RequestParam("hostaltype") String hostaltype
+                                                   ) {
         try {
-            Complain createdComplain = complainService.createComplain(c_itemcode, user_index, c_description, fname, lname, room, c_image, hostaltype, status);
+            Complain createdComplain = complainService.createComplain(c_itemcode, user_index, c_description, fname, lname, room, c_image, hostaltype);
             return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

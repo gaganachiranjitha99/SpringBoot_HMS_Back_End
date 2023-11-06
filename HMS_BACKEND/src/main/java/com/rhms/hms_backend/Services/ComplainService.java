@@ -129,7 +129,7 @@ public class ComplainService {
     }
 
 
-    public Complain createComplain(String c_itemcode, String user_index, String c_description, String fname, String lname, String room, String c_image, String hostaltype, String status) {
+    public Complain createComplain(String c_itemcode, String user_index, String c_description, String fname, String lname, String room, String c_image, String hostaltype) {
         try {
             Complain complain = new Complain();
             complain.setC_itemcode(c_itemcode);
@@ -140,7 +140,7 @@ public class ComplainService {
             complain.setRoom(room);
             complain.setC_image(c_image);
             complain.setHostaltype(hostaltype);
-            complain.setStatus(status);
+
 
             return complainRepo.save(complain);
         } catch (Exception e) {
