@@ -75,5 +75,9 @@ public class UserService {
     }
 
 
+    public String getMessageByIndexAndRoom(String user_index, String room) {
+        return userRepo.getMessageByIndexAndRoom(user_index, room);
+    }
+
 
     }
