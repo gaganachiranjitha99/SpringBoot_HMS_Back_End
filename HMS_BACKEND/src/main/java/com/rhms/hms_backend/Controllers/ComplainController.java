@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,44 +26,59 @@ public class ComplainController {
     private QRCodeService qrCodeService;
 
 
+//    @PostMapping("/create")
+//    public ResponseEntity<Complain> createComplain(
+//            @RequestParam("c_itemcode") MultipartFile cItemCode,
+//            @RequestParam("c_description") String cDescription,
+//            @RequestParam("c_image") String cImage,
+//            @RequestParam("fname") String fname,
+//            @RequestParam("lname") String lname,
+//            @RequestParam("room") String room,
+//            @RequestParam("user_index") String userIndex,
+//            @RequestParam("hostaltype") String hostaltype
+//    ) {
+//        try {
+//            // 1. Save the QR code image and get QR code data
+//            String qrCodeData = qrCodeService.saveQRCode(cItemCode);
+//
+//            // 2. Create a Complain object and set the details
+//            Complain complain = new Complain();
+//            complain.setC_itemcode(qrCodeData);
+//            complain.setC_description(cDescription);
+//            complain.setFname(fname);
+//            complain.setC_image(cImage);
+//            complain.setUser_index(userIndex);
+//            complain.setLname(lname);
+//            complain.setRoom(room);
+//            complain.setHostaltype(hostaltype);
+//
+//            // 3. Save the Complain object to the database
+//            Complain createdComplain = complainService.createComplain(complain);
+//
+//            return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+
     @PostMapping("/create")
-    public ResponseEntity<Complain> createComplain(
-            @RequestParam("c_itemcode") MultipartFile cItemCode,
-            @RequestParam("c_description") String cDescription,
-            @RequestParam("c_image") String cImage,
-            @RequestParam("fname") String fname,
-            @RequestParam("lname") String lname,
-            @RequestParam("room") String room,
-            @RequestParam("user_index") String userIndex,
-            @RequestParam("hostaltype") String hostaltype
-    ) {
+    public ResponseEntity<Complain> createComplain(@RequestParam("c_itemcode") String c_itemcode,
+                                                   @RequestParam("user_index") String user_index,
+                                                   @RequestParam("c_description") String c_description,
+                                                   @RequestParam("fname") String fname,
+                                                   @RequestParam("lname") String lname,
+                                                   @RequestParam("room") String room,
+                                                   @RequestParam("c_image") String c_image,
+                                                   @RequestParam("hostaltype") String hostaltype,
+                                                   @RequestParam("status") String status) {
         try {
-            // 1. Save the QR code image and get QR code data
-            String qrCodeData = qrCodeService.saveQRCode(cItemCode);
-
-            // 2. Create a Complain object and set the details
-            Complain complain = new Complain();
-            complain.setC_itemcode(qrCodeData);
-            complain.setC_description(cDescription);
-            complain.setFname(fname);
-            complain.setC_image(cImage);
-            complain.setUser_index(userIndex);
-            complain.setLname(lname);
-            complain.setRoom(room);
-            complain.setHostaltype(hostaltype);
-
-            // 3. Save the Complain object to the database
-            Complain createdComplain = complainService.createComplain(complain);
-
+            Complain createdComplain = complainService.createComplain(c_itemcode, user_index, c_description, fname, lname, room, c_image, hostaltype, status);
             return new ResponseEntity<>(createdComplain, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
-
 
     @PutMapping("/updateComplain/{complainId}")
     public Long updateComplain(@PathVariable("complainId") Long complainId, @RequestBody Complain updatedComplain) {

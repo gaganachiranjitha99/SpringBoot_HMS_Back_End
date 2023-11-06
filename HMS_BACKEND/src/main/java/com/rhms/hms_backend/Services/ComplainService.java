@@ -42,9 +42,9 @@ public class ComplainService {
    @Autowired
    private ResolveComplainCopyRepo resolveComplainCopyRepo;
 
-    public Complain createComplain(Complain complain) {
-        return complainRepo.save(complain);
-    }
+//    public Complain createComplain(Complain complain) {
+//        return complainRepo.save(complain);
+//    }
 
     public void updateComplain(Complain complaint,Long id){
         complainRepo.save(complaint);
@@ -75,31 +75,31 @@ public class ComplainService {
         complainRepo.deleteById(id);
     }
 
-
-    @Transactional
-    public Complain saveQRCode(String c_itemcode) throws IOException, NotFoundException {
-        byte[] decodedImage = Base64.getDecoder().decode(c_itemcode);
-
-        // Convert the decoded image bytes to a BufferedImage
-        ByteArrayInputStream bis = new ByteArrayInputStream(decodedImage);
-        BufferedImage image = ImageIO.read(bis);
-
-        // Decode the QR code from the BufferedImage
-        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(
-                new BufferedImageLuminanceSource(image)));
-        Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap);
-
-        if (qrCodeResult != null) {
-            String qrCodeData = qrCodeResult.getText();
-
-            // Save the QR code data to the database
-            Complain complain = new Complain();
-            complain.setC_itemcode(c_itemcode);
-            return complainRepo.save(complain);
-        } else {
-            return null;
-        }
-    }
+//
+//    @Transactional
+//    public Complain saveQRCode(String c_itemcode) throws IOException, NotFoundException {
+//        byte[] decodedImage = Base64.getDecoder().decode(c_itemcode);
+//
+//        // Convert the decoded image bytes to a BufferedImage
+//        ByteArrayInputStream bis = new ByteArrayInputStream(decodedImage);
+//        BufferedImage image = ImageIO.read(bis);
+//
+//        // Decode the QR code from the BufferedImage
+//        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(
+//                new BufferedImageLuminanceSource(image)));
+//        Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap);
+//
+//        if (qrCodeResult != null) {
+//            String qrCodeData = qrCodeResult.getText();
+//
+//            // Save the QR code data to the database
+//            Complain complain = new Complain();
+//            complain.setC_itemcode(c_itemcode);
+//            return complainRepo.save(complain);
+//        } else {
+//            return null;
+//        }
+//    }
 
 
     public List<Complain> getComplainsByUserId(String user_index) {
@@ -126,5 +126,25 @@ public class ComplainService {
 
     public List<ResolvedComplainCopy> getAllResolvedComplainsLog() {
         return resolveComplainCopyRepo.findAll();
+    }
+
+
+    public Complain createComplain(String c_itemcode, String user_index, String c_description, String fname, String lname, String room, String c_image, String hostaltype, String status) {
+        try {
+            Complain complain = new Complain();
+            complain.setC_itemcode(c_itemcode);
+            complain.setUser_index(user_index);
+            complain.setC_description(c_description);
+            complain.setFname(fname);
+            complain.setLname(lname);
+            complain.setRoom(room);
+            complain.setC_image(c_image);
+            complain.setHostaltype(hostaltype);
+            complain.setStatus(status);
+
+            return complainRepo.save(complain);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating complain: " + e.getMessage());
+        }
     }
 }
