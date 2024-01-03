@@ -75,8 +75,8 @@ public class UserService {
     }
 
 
-    public String getMessageByIndexAndRoom(String user_index, String room) {
-        return userRepo.getMessageByIndexAndRoom(user_index, room);
+    public String assign_student_to_room(String user_index, String room) {
+        return userRepo.assign_student_to_room(user_index, room);
     }
 
 

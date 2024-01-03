@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PostMapping ("/assign/{input_user_index}/{input_room_no}")
-    public String getMessageByIndexAndRoom(@PathVariable ("input_user_index") String user_index, @PathVariable ("input_room_no") String room) {
-        return userService.getMessageByIndexAndRoom(user_index, room);
+    public String assign_student_to_room(@PathVariable ("input_user_index") String user_index, @PathVariable ("input_room_no") String room) {
+        return userService.assign_student_to_room(user_index, room);
     }
 
 }

@@ -20,6 +20,6 @@ public interface UserRepo extends JpaRepository<Users,Long> {
     List<Users> findAll();
 
     @Query(value = "SELECT assign_student_to_room(:input_user_index, :input_room_no)", nativeQuery = true)
-    String getMessageByIndexAndRoom(@Param("input_user_index") String user_index, @Param("input_room_no") String room);
+    String assign_student_to_room(@Param("input_user_index") String user_index, @Param("input_room_no") String room);
 
 }

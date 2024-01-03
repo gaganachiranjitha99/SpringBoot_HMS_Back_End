@@ -52,6 +52,7 @@ public class SecurityConfig  {
                 .requestMatchers("/api/user/subwarden").hasRole(Role.SUBWARDEN.name())
 
                 .requestMatchers("api/admin/**").permitAll()
+                    .requestMatchers("api/user/**").permitAll()
 
                 .requestMatchers("/api/subwarden/**").permitAll()
                 .requestMatchers("/api/dean/**").permitAll()
